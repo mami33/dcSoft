@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/new/icon">
+        <file>wpicon.ico</file>
+        <file>wpicon.png</file>
+        <file>form.ui</file>
+        <file>icon.qrc</file>
+        <file>mainwindow.py</file>
+        <file>rc_icon.py</file>
+        <file>requirements.txt</file>
+        <file>ui_form.py</file>
+        <file>whatsApp.pyproject</file>
+        <file>whatsApp.pyproject.user</file>
+    </qresource>
+</RCC>

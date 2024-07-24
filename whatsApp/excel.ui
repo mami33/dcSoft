@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1052</width>
+    <height>546</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QTableWidget" name="tableWidget">
+     <property name="rowCount">
+      <number>0</number>
+     </property>
+     <property name="columnCount">
+      <number>0</number>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="frame_2">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_9">
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:rgb(255, 85, 127)</string>
+        </property>
+        <property name="text">
+         <string>^   ÖNCE İLGİLİ SÜTUNU YA DA İLGİLİ HÜCREYİ TABLODAN TIKLAYIN  SONRA AŞAĞIDAN İLGİLİ BUTONU TIKLAYIN ^</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="chosen_columns_label">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgba(255, 255, 255, 0);</string>
+     </property>
+     <property name="text">
+      <string>none</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="botton_frame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QFrame" name="frame">
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <property name="spacing">
+              <number>25</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="ch_name_bn">
+               <property name="minimumSize">
+                <size>
+                 <width>160</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>160</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+background-color: rgba(85, 255, 127, 100);
+border-radius:15px;
+}
+QPushButton::hover{
+background-color: rgba(85, 255, 127, 200);
+border-radius:15px;
+}
+QPushButton::pressed{
+background-color: rgba(85, 255, 127, 75);
+border-radius:15px;
+}</string>
+               </property>
+               <property name="text">
+                <string>İsim Sütunu Belirle</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="minimumSize">
+                <size>
+                 <width>300</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>300</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>ArrowCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>İsim Sütunu  -&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="name_column_label">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>-</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="Line" name="line">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <property name="spacing">
+              <number>25</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="ch_number_btn">
+               <property name="minimumSize">
+                <size>
+                 <width>160</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>160</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+background-color: rgba(85, 255, 127, 100);
+border-radius:15px;
+}
+QPushButton::hover{
+background-color: rgba(85, 255, 127, 200);
+border-radius:15px;
+}
+QPushButton::pressed{
+background-color: rgba(85, 255, 127, 75);
+border-radius:15px;
+}</string>
+               </property>
+               <property name="text">
+                <string>Numara Sütunu Belirle</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_2">
+               <property name="maximumSize">
+                <size>
+                 <width>300</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>ArrowCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>Numara Sütunu -&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="number_column_label">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>-</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="Line" name="line_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <property name="spacing">
+              <number>25</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="ch_cost_btn">
+               <property name="minimumSize">
+                <size>
+                 <width>160</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>160</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+background-color: rgba(85, 255, 127, 100);
+border-radius:15px;
+}
+QPushButton::hover{
+background-color: rgba(85, 255, 127, 200);
+border-radius:15px;
+}
+QPushButton::pressed{
+background-color: rgba(85, 255, 127, 75);
+border-radius:15px;
+}</string>
+               </property>
+               <property name="text">
+                <string>Tutar Sütunu Belirle</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_4">
+               <property name="maximumSize">
+                <size>
+                 <width>300</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>ArrowCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>Tutar Sütunu -&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="total_column_label">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>-</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="Line" name="line_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <property name="spacing">
+              <number>25</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="ch_date_btn">
+               <property name="minimumSize">
+                <size>
+                 <width>160</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>160</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+background-color: rgba(85, 255, 127, 100);
+border-radius:15px;
+}
+QPushButton::hover{
+background-color: rgba(85, 255, 127, 200);
+border-radius:15px;
+}
+QPushButton::pressed{
+background-color: rgba(85, 255, 127, 75);
+border-radius:15px;
+}</string>
+               </property>
+               <property name="text">
+                <string>Tutar Tarihi Belirle</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_3">
+               <property name="minimumSize">
+                <size>
+                 <width>300</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>300</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>ArrowCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>Opsiyonel  -&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="date_column_label">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>-</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="add_to_opage_btn">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.889, y2:0.784591, stop:0.329975 rgba(80, 155, 30, 150), stop:0.649874 rgba(170, 255, 127, 150));
+border-radius:20px;
+	
+	color: rgb(0, 85, 0);
+}
+
+QPushButton::hover{
+border-radius:20px;
+background-color: rgba(165, 165, 165,200);
+color: rgb(85, 255, 0);}
+
+QPushButton::pressed{
+border-radius:20px;
+background-color: rgba(165, 165, 165,100);
+color: rgb(85, 255, 0);}
+</string>
+        </property>
+        <property name="text">
+         <string>Ekle</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="clear_colselection_btn">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.889, y2:0.784591, stop:0.329975 rgba(80, 155, 30, 150), stop:0.649874 rgba(170, 255, 127, 150));
+border-radius:20px;
+	
+	color: rgb(255, 85, 0);
+}
+
+QPushButton::hover{
+border-radius:20px;
+background-color: rgba(165, 165, 165,200);
+color: rgb(85, 255, 0);}
+
+QPushButton::pressed{
+border-radius:20px;
+background-color: rgba(165, 165, 165,100);
+color: rgb(85, 255, 0);}
+</string>
+        </property>
+        <property name="text">
+         <string>Temizle</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>Form</sender>
+   <signal>windowIconTextChanged(QString)</signal>
+   <receiver>Form</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>520</x>
+     <y>272</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1101</x>
+     <y>317</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clear_colselection_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>name_column_label</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>969</x>
+     <y>418</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>776</x>
+     <y>338</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clear_colselection_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>number_column_label</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>950</x>
+     <y>433</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>731</x>
+     <y>371</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clear_colselection_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>total_column_label</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>998</x>
+     <y>436</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>675</x>
+     <y>446</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clear_colselection_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>date_column_label</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>998</x>
+     <y>444</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>727</x>
+     <y>487</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ch_name_bn</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>frame_2</receiver>
+   <slot>setHidden(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>71</x>
+     <y>328</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>19</x>
+     <y>242</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ch_number_btn</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>frame_2</receiver>
+   <slot>setHidden(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>168</x>
+     <y>384</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>55</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ch_cost_btn</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>frame_2</receiver>
+   <slot>setHidden(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>53</x>
+     <y>434</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>89</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ch_date_btn</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>frame_2</receiver>
+   <slot>setHidden(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>153</x>
+     <y>499</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>175</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Form</sender>
+   <signal>customContextMenuRequested(QPoint)</signal>
+   <receiver>chosen_columns_label</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>525</x>
+     <y>272</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>525</x>
+     <y>266</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

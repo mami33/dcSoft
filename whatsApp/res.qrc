@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>picon/align-justify.svg</file>
+        <file>picon/chevrons-left.svg</file>
+        <file>picon/credit-card.svg</file>
+        <file>picon/paperclip.svg</file>
+        <file>picon/phone-call.svg</file>
+        <file>picon/send.svg</file>
+        <file>picon/user.svg</file>
+    </qresource>
+    <qresource prefix="/what">
+        <file>wpicon.png</file>
+    </qresource>
+</RCC>
