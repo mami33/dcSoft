@@ -1,12 +1,18 @@
+import array
 import sys
 import os
 import time
 import openpyxl
+from PySide6.QtCore import Qt
+
 this_path = os.path.dirname(os.path.abspath(__file__)) + "/whatsApp"
 sys.path.append(this_path)
+
+from whatsApp.ui_welcomeDiag import Ui_Dialog
 import whatsApp.mainwindow as MainWindow
 from PySide6 import QtWidgets
-from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QTableWidgetItem, QWidget
+from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QTableWidgetItem, QWidget, QDialog, QVBoxLayout, \
+    QLabel, QPushButton
 from PySide6.QtGui import QIcon, QPixmap
 from configparser import ConfigParser
 from whatsApp.excelwindow import ExcelMainWindow
@@ -14,15 +20,29 @@ from MyConfigs import *
 
 
 class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
+    def openDiag(self):
+        diag = QDialog()
+        uw = Ui_Dialog()
+        uw.setupUi(diag)
+        diag.setWindowTitle("Hoş Geldiniz")
+        diag.setWindowIcon(QIcon('./whatsApp/wpicon.png'))
+        uw.pushButton.clicked.connect(self.diagCli)
+        diag.exec()
+    def diagCli(self):
+        self.close()
+
     def showExcelWindow(self):
         self.excel_window = ExcelMainWindow()
         self.excel_window.ui.add_to_opage_btn.clicked.connect(self.add_click)
 
         self.excel_window.show()
+
     def closeEventExcel(self, event):
         self.excel_window.isWindow()
+
     def __init__(self):
         super().__init__()
+        self.openDiag()
         self.setupUi(self)
         self.setWindowIcon(QIcon('./whatsApp/wpicon.png'))
         self.setWindowTitle('WhatsAppBot')
@@ -36,12 +56,11 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
         self.radioButton_2.clicked.connect(self.frame_clicked)
         self.radioButton_3.clicked.connect(self.frame_clicked)
         self.comboBox.currentIndexChanged.connect(self.frame_clicked)
-        self.tableWidget.clicked.connect(self.table_clicked)
+        # self.tableWidget.clicked.connect(self.table_clicked)
 
-
-    def table_clicked(self):
-        row = self.tableWidget.currentRow()
-        self.tableWidget.selectRow(row)
+    # def table_clicked(self):
+    #     row = self.tableWidget.currentRow()
+    #     self.tableWidget.selectRow(row)
 
     def sel_all(self):
         self.tableWidget.selectAll()
@@ -59,10 +78,10 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
             dir=':\\',
             filter='Supported Files (*.xlsm;*.xlsx;*.xls)'
         )
-        if files    :
+        if files:
             self.showExcelWindow()
             excel_path = files[0]
-            config_write("excel_data","path", excel_path)
+            config_write("excel_data", "path", excel_path)
             workbook = openpyxl.load_workbook(excel_path)
             sheet = workbook.active
             self.excel_window.ui.tableWidget.setRowCount(sheet.max_row + 1)
@@ -79,13 +98,15 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
 
     def frame_clicked(self):
         try:
-         self.add_click()
+            self.add_click()
         except Exception as e:
             print(e)
 
     def add_click(self):
         chosen_columns = self.excel_window.ui.chosen_columns_label.text()
+        config.set("excel_data", "chosen_columns", chosen_columns)
         chosen_columns = chosen_columns.split(';')
+
         print(chosen_columns)
         new_excel = config_get("excel_data", "path")
         tuple_length = 0
@@ -95,15 +116,15 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
             chosen_name = sheet[chosen_columns[0]]
             chosen_number = sheet[chosen_columns[1]]
             chosen_cost = sheet[chosen_columns[2]]
-            chosen_date = sheet[chosen_columns[3]]
+            if chosen_columns[3] != "NONE":
+                chosen_date = sheet[chosen_columns[3]]
 
             if len(chosen_name) > len(chosen_number):
                 my_tuple_length = len(chosen_number)
             else:
                 my_tuple_length = len(chosen_name)
             content = []
-            data = ["","","","",""]
-
+            data = ["", "", "", "", ""]
 
             for i in range(0, my_tuple_length):
                 if not self.checkBox.isChecked():
@@ -123,7 +144,8 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
                         if self.comboBox.currentIndex() == 5 or self.comboBox.currentIndex() == 6 or self.comboBox.currentIndex() == 7:
                             data[0] = "Bayram"
                             data[1] = self.comboBox.currentText()
-                content.append((chosen_name[i].value, chosen_number[i].value, self.message_builder(chosen_name[i].value,data=data)))
+                content.append((chosen_name[i].value, chosen_number[i].value,
+                                self.message_builder(chosen_name[i].value, data=data)))
 
             list_values = content
             print(list_values)
@@ -135,61 +157,125 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
                     col_index += 1
                 row_index += 1
 
-
-
-
     def myexitcon(self):
         #exit main
         print("çıkıldı")
 
-
-
     # data 0 : içeriği elle gir aktif, data 1 : bakiye mesaj içeriği, data 2 :  bakiye hatırlatma, data 3: bayram içerik
-    def message_builder(self, name,data) -> str:
+    def message_builder(self, name, data) -> str:
         if data[0] == "Manuel":
             return data[1]
         if data[0] == "True":
-
             message_total = (f"Sayın yöneticimiz {name} , {company_name} ailesi olarak sizlere iyi günler dileriz."
                              f"Hesaplarımızda {data[1]} 'TL tutarında  bakiyeniz görülmektedir"
                              f"Mevcut bakiyenizi en kısa sürede ödemenizi rica ederiz."
                              f"Bu mesaj otomasyon tarafından gönderilmiştir."
                              f"Bir hata olduğunu düşünüyorsanız lütfen bu numara üzerinden irtibata geçiniz")
             return message_total
-        if data[0]  == "Kurban Bayramı":
-
+        if data[0] == "Kurban Bayramı":
             message_total = (f"Sayın yöneticimiz {name} , {company_name} ailesi olarak Kurban Bayramınızı"
                              f"en içten dileklerimiz ile kutlar, size ve ailenize sağlık, mutluluk, esenlikler dileriz")
             return message_total
-        if data[0]  == "Ramazan Bayramı":
-
+        if data[0] == "Ramazan Bayramı":
             message_total = (f"Sayın yöneticimiz {name} , {company_name} ailesi olarak Ramazan Bayramınızı"
                              f"en içten dileklerimiz ile kutlar, size ve ailenize sağlık, mutluluk, esenlikler dileriz")
             return message_total
-        if data[0]  == "Kandil":
-
+        if data[0] == "Kandil":
             message_total = (f"Sayın yöneticimiz {name} , {company_name} ailesi olarak {data[1]} kandilinizi"
                              f"en içten dileklerimiz ile kutlar, hayırlara vesile olmasını dileriz.")
             return message_total
-        if data[0]  == "Bayram":
-
+        if data[0] == "Bayram":
             message_total = (f"Sayın yöneticimiz {name} , {company_name} ailesi olarak {data[1]} bayramınızı"
                              f"en içten dileklerimiz ile kutlar, Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk başta olmak üzere silah arkadaşlarını ve tüm şehitlerimizi rahmetle, kahraman gazilerimizi minnet ve şükranla anıyoruz;.")
             return message_total
 
 
+
     def send_message(self):
         #import whatsapp_modul as wp
-        item = self.tableWidget.selectedItems()
-        print(item)
-        list= []
-        for i in list:
-            print(i)
+        items = self.tableWidget.selectedItems()
+        name = ""
+        number = ""
+        my_message_content = {}
+        message = ""
+        content = []
+        for item in items:
+
+            if item.column() == 0:
+                name = item.text()
+                content.append(name)
+            elif item.column() == 1:
+                number = item.text()
+                content.append(number)
+
+            elif item.column() == 2:
+                message = item.text()
+                content.append(message)
+
+            if len(content) == 3:
+                data = content
+                my_message_content.update({item.row(): data})
+                content = []
+        import socket
+        def checknet():
+            try:
+                socket.setdefaulttimeout(3)
+                socket.socket(socket.AF_INET,socket.SOCK_STREAM).connect(("8.8.8.8",53))
+                return True
+            except socket.error as ex:
+                print(ex)
+                d = CustomDialog2()
+                d.exec()
+                return False
+        print(message)
+        if checknet():
+            import whatsapp_modul as wp
+
+            for mesage in my_message_content.items():
+                number = mesage[0]
+                name = mesage[1]
+                message = mesage[2]
+                wp.send_message(number,message)
 
 
+class OpeningDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("Hoş Geldiniz")
+        self.setWindowIcon(QIcon("whatsApp/wpicon.ico"))
+        self.layout = QVBoxLayout()
+
+        message = QLabel("Uygulamaya hoş geldiniz. Mesaj göndermek için ")
+        message.setStyleSheet("")
+        message.setStyleSheet("padding: 20px")
+        message.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        button = QPushButton()
+        button.setText("Tamam")
+
+        self.layout.addWidget(message, alignment=Qt.AlignmentFlag.AlignCenter)
+        self.layout.addWidget(button, alignment=Qt.AlignmentFlag.AlignCenter)
+        self.setLayout(self.layout)
+        button.clicked.connect(self.clk)
+
+    def clk(self):
+        self.close()
 
 
+class CustomDialog2(QDialog):
+    def __init__(self):
+        super().__init__()
 
+        self.setWindowTitle("Bağlantı Hatası!")
+        self.setWindowIcon(QIcon("whatsApp/wpicon.ico"))
+        self.layout = QVBoxLayout()
+
+        message = QLabel("İnternet bağlantınızda sorun var lütfen konrol ediniz.")
+        message.setStyleSheet("padding: 20px")
+        message.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.layout.addWidget(message)
+
+        self.setLayout(self.layout)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

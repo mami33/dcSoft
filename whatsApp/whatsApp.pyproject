@@ -3,6 +3,7 @@
         "mainwindow.py",
         "form.ui",
         "res.qrc",
-        "excel.ui"
+        "excel.ui",
+        "welcomeDiag.ui"
     ]
 }

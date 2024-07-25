@@ -78,9 +78,6 @@ def send_message(number, message):
         users_cant_find.update(data)
 
 
-for number, message in users.items():
-    send_message(number, message)
-
 driver.close()
 
 driver.quit()

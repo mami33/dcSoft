@@ -120,6 +120,143 @@ padding:1px</string>
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="1">
+        <widget class="QFrame" name="sendFrame">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QPushButton" name="selectAllButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>165</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>165</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	background-color: rgba(255, 255, 255, 0);
+	border:3px solid;
+border-radius:10px;
+	border-color:rgb(76, 175, 80);
+color: rgb(21, 48, 22);
+margin:2px;
+padding:2px
+	
+}
+QPushButton::pressed{
+	background-color: rgba(255, 255, 255, 50);
+	border-radius:10px;
+	border:3px solid
+	
+}</string>
+            </property>
+            <property name="text">
+             <string>Hepsini Seç</string>
+            </property>
+            <property name="icon">
+             <iconset resource="res.qrc">
+              <normaloff>:/icons/picon/align-justify.svg</normaloff>:/icons/picon/align-justify.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>30</width>
+              <height>30</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="sendButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>165</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>165</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	background-color: rgba(255, 255, 255, 0);
+	border:3px solid;
+border-radius:10px;
+	border-color:rgb(76, 175, 80);
+color: rgb(21, 48, 22);
+margin:2px;
+padding:2px
+	
+}
+QPushButton::pressed{
+	background-color: rgba(255, 255, 255, 50);
+	border-radius:10px;
+	border-color:rgb(76, 175, 80);
+	border:5px solid
+	
+}</string>
+            </property>
+            <property name="text">
+             <string>Gönder</string>
+            </property>
+            <property name="icon">
+             <iconset resource="res.qrc">
+              <normaloff>:/icons/picon/send.svg</normaloff>:/icons/picon/send.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
        <item row="0" column="0" colspan="2">
         <widget class="QFrame" name="settings_frame">
          <property name="sizePolicy">
@@ -395,10 +532,25 @@ padding:15px
        <item row="1" column="0">
         <widget class="QTableWidget" name="tableWidget">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgba(232, 255, 233, 50);</string>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhUppercaseOnly</set>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::DoubleClicked</set>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::ContiguousSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
          </property>
          <property name="showGrid">
           <bool>false</bool>
@@ -510,143 +662,66 @@ padding:15px
             <normaloff>:/icons/picon/credit-card.svg</normaloff>:/icons/picon/credit-card.svg</iconset>
           </property>
          </column>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QFrame" name="sendFrame">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-           <widget class="QPushButton" name="selectAllButton">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>165</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>165</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	background-color: rgba(255, 255, 255, 0);
-	border:3px solid;
-border-radius:10px;
-	border-color:rgb(76, 175, 80);
-color: rgb(21, 48, 22);
-margin:2px;
-padding:2px
-	
-}
-QPushButton::pressed{
-	background-color: rgba(255, 255, 255, 50);
-	border-radius:10px;
-	border:3px solid
-	
-}</string>
-            </property>
-            <property name="text">
-             <string>Hepsini Seç</string>
-            </property>
-            <property name="icon">
-             <iconset resource="res.qrc">
-              <normaloff>:/icons/picon/align-justify.svg</normaloff>:/icons/picon/align-justify.svg</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>30</width>
-              <height>30</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="sendButton">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>165</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>165</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>9</pointsize>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	background-color: rgba(255, 255, 255, 0);
-	border:3px solid;
-border-radius:10px;
-	border-color:rgb(76, 175, 80);
-color: rgb(21, 48, 22);
-margin:2px;
-padding:2px
-	
-}
-QPushButton::pressed{
-	background-color: rgba(255, 255, 255, 50);
-	border-radius:10px;
-	border-color:rgb(76, 175, 80);
-	border:5px solid
-	
-}</string>
-            </property>
-            <property name="text">
-             <string>Gönder</string>
-            </property>
-            <property name="icon">
-             <iconset resource="res.qrc">
-              <normaloff>:/icons/picon/send.svg</normaloff>:/icons/picon/send.svg</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>40</width>
-              <height>40</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <item row="0" column="0">
+          <property name="text">
+           <string>mami</string>
+          </property>
+         </item>
+         <item row="0" column="1">
+          <property name="text">
+           <string>+905306565027</string>
+          </property>
+         </item>
+         <item row="0" column="2">
+          <property name="text">
+           <string>tutar</string>
+          </property>
+         </item>
+         <item row="1" column="0">
+          <property name="text">
+           <string>mami1</string>
+          </property>
+         </item>
+         <item row="1" column="1">
+          <property name="text">
+           <string>05308461427</string>
+          </property>
+         </item>
+         <item row="1" column="2">
+          <property name="text">
+           <string>t1</string>
+          </property>
+         </item>
+         <item row="2" column="0">
+          <property name="text">
+           <string>isim2</string>
+          </property>
+         </item>
+         <item row="2" column="1">
+          <property name="text">
+           <string>no2</string>
+          </property>
+         </item>
+         <item row="2" column="2">
+          <property name="text">
+           <string>n</string>
+          </property>
+         </item>
+         <item row="3" column="0">
+          <property name="text">
+           <string>isim3</string>
+          </property>
+         </item>
+         <item row="3" column="1">
+          <property name="text">
+           <string>no3</string>
+          </property>
+         </item>
+         <item row="3" column="2">
+          <property name="text">
+           <string>h</string>
+          </property>
+         </item>
         </widget>
        </item>
       </layout>

@@ -15,15 +15,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
-    QGridLayout, QGroupBox, QHBoxLayout, QHeaderView,
-    QLabel, QMainWindow, QPushButton, QRadioButton,
-    QSizePolicy, QSpacerItem, QTableWidget, QTableWidgetItem,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
+    QFrame, QGridLayout, QGroupBox, QHBoxLayout,
+    QHeaderView, QLabel, QMainWindow, QPushButton,
+    QRadioButton, QSizePolicy, QSpacerItem, QTableWidget,
+    QTableWidgetItem, QVBoxLayout, QWidget)
 import rc_res
 
 class Ui_MainWindow(object):
-
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
@@ -85,6 +84,82 @@ class Ui_MainWindow(object):
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.gridLayout = QGridLayout(self.frame_2)
         self.gridLayout.setObjectName(u"gridLayout")
+        self.sendFrame = QFrame(self.frame_2)
+        self.sendFrame.setObjectName(u"sendFrame")
+        sizePolicy.setHeightForWidth(self.sendFrame.sizePolicy().hasHeightForWidth())
+        self.sendFrame.setSizePolicy(sizePolicy)
+        self.sendFrame.setFrameShape(QFrame.StyledPanel)
+        self.sendFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_2 = QVBoxLayout(self.sendFrame)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.selectAllButton = QPushButton(self.sendFrame)
+        self.selectAllButton.setObjectName(u"selectAllButton")
+        sizePolicy.setHeightForWidth(self.selectAllButton.sizePolicy().hasHeightForWidth())
+        self.selectAllButton.setSizePolicy(sizePolicy)
+        self.selectAllButton.setMinimumSize(QSize(165, 30))
+        self.selectAllButton.setMaximumSize(QSize(165, 30))
+        self.selectAllButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.selectAllButton.setStyleSheet(u"QPushButton{\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border:3px solid;\n"
+"border-radius:10px;\n"
+"	border-color:rgb(76, 175, 80);\n"
+"color: rgb(21, 48, 22);\n"
+"margin:2px;\n"
+"padding:2px\n"
+"	\n"
+"}\n"
+"QPushButton::pressed{\n"
+"	background-color: rgba(255, 255, 255, 50);\n"
+"	border-radius:10px;\n"
+"	border:3px solid\n"
+"	\n"
+"}")
+        icon = QIcon()
+        icon.addFile(u":/icons/picon/align-justify.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.selectAllButton.setIcon(icon)
+        self.selectAllButton.setIconSize(QSize(30, 30))
+
+        self.verticalLayout_2.addWidget(self.selectAllButton)
+
+        self.sendButton = QPushButton(self.sendFrame)
+        self.sendButton.setObjectName(u"sendButton")
+        sizePolicy.setHeightForWidth(self.sendButton.sizePolicy().hasHeightForWidth())
+        self.sendButton.setSizePolicy(sizePolicy)
+        self.sendButton.setMinimumSize(QSize(165, 100))
+        self.sendButton.setMaximumSize(QSize(165, 100))
+        font1 = QFont()
+        font1.setPointSize(9)
+        font1.setBold(True)
+        self.sendButton.setFont(font1)
+        self.sendButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.sendButton.setStyleSheet(u"QPushButton{\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border:3px solid;\n"
+"border-radius:10px;\n"
+"	border-color:rgb(76, 175, 80);\n"
+"color: rgb(21, 48, 22);\n"
+"margin:2px;\n"
+"padding:2px\n"
+"	\n"
+"}\n"
+"QPushButton::pressed{\n"
+"	background-color: rgba(255, 255, 255, 50);\n"
+"	border-radius:10px;\n"
+"	border-color:rgb(76, 175, 80);\n"
+"	border:5px solid\n"
+"	\n"
+"}")
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/picon/send.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.sendButton.setIcon(icon1)
+        self.sendButton.setIconSize(QSize(40, 40))
+
+        self.verticalLayout_2.addWidget(self.sendButton)
+
+
+        self.gridLayout.addWidget(self.sendFrame, 1, 1, 1, 1)
+
         self.settings_frame = QFrame(self.frame_2)
         self.settings_frame.setObjectName(u"settings_frame")
         sizePolicy1.setHeightForWidth(self.settings_frame.sizePolicy().hasHeightForWidth())
@@ -112,10 +187,10 @@ class Ui_MainWindow(object):
         self.add_excel_button.setObjectName(u"add_excel_button")
         sizePolicy.setHeightForWidth(self.add_excel_button.sizePolicy().hasHeightForWidth())
         self.add_excel_button.setSizePolicy(sizePolicy)
-        font1 = QFont()
-        font1.setPointSize(10)
-        font1.setBold(True)
-        self.add_excel_button.setFont(font1)
+        font2 = QFont()
+        font2.setPointSize(10)
+        font2.setBold(True)
+        self.add_excel_button.setFont(font2)
         self.add_excel_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.add_excel_button.setStyleSheet(u"QPushButton{\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
@@ -134,9 +209,9 @@ class Ui_MainWindow(object):
 "	border:5px solid\n"
 "	\n"
 "}")
-        icon = QIcon()
-        icon.addFile(u":/icons/picon/paperclip.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.add_excel_button.setIcon(icon)
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/picon/paperclip.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.add_excel_button.setIcon(icon2)
         self.add_excel_button.setIconSize(QSize(30, 30))
 
         self.verticalLayout_4.addWidget(self.add_excel_button)
@@ -145,7 +220,7 @@ class Ui_MainWindow(object):
         self.add_excel_button_3.setObjectName(u"add_excel_button_3")
         sizePolicy.setHeightForWidth(self.add_excel_button_3.sizePolicy().hasHeightForWidth())
         self.add_excel_button_3.setSizePolicy(sizePolicy)
-        self.add_excel_button_3.setFont(font1)
+        self.add_excel_button_3.setFont(font2)
         self.add_excel_button_3.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.add_excel_button_3.setStyleSheet(u"QPushButton{\n"
 "	background-color: rgba(255, 255, 255, 0);\n"
@@ -162,9 +237,9 @@ class Ui_MainWindow(object):
 "	border:5px solid\n"
 "	\n"
 "}")
-        icon1 = QIcon()
-        icon1.addFile(u":/icons/picon/chevrons-left.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.add_excel_button_3.setIcon(icon1)
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/picon/chevrons-left.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.add_excel_button_3.setIcon(icon3)
         self.add_excel_button_3.setIconSize(QSize(30, 30))
 
         self.verticalLayout_4.addWidget(self.add_excel_button_3)
@@ -233,27 +308,56 @@ class Ui_MainWindow(object):
         self.tableWidget = QTableWidget(self.frame_2)
         if (self.tableWidget.columnCount() < 3):
             self.tableWidget.setColumnCount(3)
-        icon2 = QIcon()
-        icon2.addFile(u":/icons/picon/user.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        __qtablewidgetitem = QTableWidgetItem()
-        __qtablewidgetitem.setIcon(icon2);
-        self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/picon/phone-call.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        __qtablewidgetitem1.setIcon(icon3);
-        self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         icon4 = QIcon()
-        icon4.addFile(u":/icons/picon/credit-card.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon4.addFile(u":/icons/picon/user.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        __qtablewidgetitem = QTableWidgetItem()
+        __qtablewidgetitem.setIcon(icon4);
+        self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/picon/phone-call.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        __qtablewidgetitem1 = QTableWidgetItem()
+        __qtablewidgetitem1.setIcon(icon5);
+        self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/picon/credit-card.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         __qtablewidgetitem2 = QTableWidgetItem()
         __qtablewidgetitem2.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
-        __qtablewidgetitem2.setIcon(icon4);
+        __qtablewidgetitem2.setIcon(icon6);
         self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         if (self.tableWidget.rowCount() < 50):
             self.tableWidget.setRowCount(50)
+        __qtablewidgetitem3 = QTableWidgetItem()
+        self.tableWidget.setItem(0, 0, __qtablewidgetitem3)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        self.tableWidget.setItem(0, 1, __qtablewidgetitem4)
+        __qtablewidgetitem5 = QTableWidgetItem()
+        self.tableWidget.setItem(0, 2, __qtablewidgetitem5)
+        __qtablewidgetitem6 = QTableWidgetItem()
+        self.tableWidget.setItem(1, 0, __qtablewidgetitem6)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.tableWidget.setItem(1, 1, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.tableWidget.setItem(1, 2, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.tableWidget.setItem(2, 0, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.tableWidget.setItem(2, 1, __qtablewidgetitem10)
+        __qtablewidgetitem11 = QTableWidgetItem()
+        self.tableWidget.setItem(2, 2, __qtablewidgetitem11)
+        __qtablewidgetitem12 = QTableWidgetItem()
+        self.tableWidget.setItem(3, 0, __qtablewidgetitem12)
+        __qtablewidgetitem13 = QTableWidgetItem()
+        self.tableWidget.setItem(3, 1, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.tableWidget.setItem(3, 2, __qtablewidgetitem14)
         self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setEnabled(False)
+        self.tableWidget.setEnabled(True)
         self.tableWidget.setStyleSheet(u"background-color: rgba(232, 255, 233, 50);")
+        self.tableWidget.setInputMethodHints(Qt.ImhUppercaseOnly)
+        self.tableWidget.setEditTriggers(QAbstractItemView.DoubleClicked)
+        self.tableWidget.setAlternatingRowColors(True)
+        self.tableWidget.setSelectionMode(QAbstractItemView.ContiguousSelection)
+        self.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.tableWidget.setShowGrid(False)
         self.tableWidget.setGridStyle(Qt.DashLine)
         self.tableWidget.setSortingEnabled(False)
@@ -266,82 +370,6 @@ class Ui_MainWindow(object):
         self.tableWidget.verticalHeader().setVisible(True)
 
         self.gridLayout.addWidget(self.tableWidget, 1, 0, 1, 1)
-
-        self.sendFrame = QFrame(self.frame_2)
-        self.sendFrame.setObjectName(u"sendFrame")
-        sizePolicy.setHeightForWidth(self.sendFrame.sizePolicy().hasHeightForWidth())
-        self.sendFrame.setSizePolicy(sizePolicy)
-        self.sendFrame.setFrameShape(QFrame.StyledPanel)
-        self.sendFrame.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_2 = QVBoxLayout(self.sendFrame)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.selectAllButton = QPushButton(self.sendFrame)
-        self.selectAllButton.setObjectName(u"selectAllButton")
-        sizePolicy.setHeightForWidth(self.selectAllButton.sizePolicy().hasHeightForWidth())
-        self.selectAllButton.setSizePolicy(sizePolicy)
-        self.selectAllButton.setMinimumSize(QSize(165, 30))
-        self.selectAllButton.setMaximumSize(QSize(165, 30))
-        self.selectAllButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.selectAllButton.setStyleSheet(u"QPushButton{\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border:3px solid;\n"
-"border-radius:10px;\n"
-"	border-color:rgb(76, 175, 80);\n"
-"color: rgb(21, 48, 22);\n"
-"margin:2px;\n"
-"padding:2px\n"
-"	\n"
-"}\n"
-"QPushButton::pressed{\n"
-"	background-color: rgba(255, 255, 255, 50);\n"
-"	border-radius:10px;\n"
-"	border:3px solid\n"
-"	\n"
-"}")
-        icon5 = QIcon()
-        icon5.addFile(u":/icons/picon/align-justify.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.selectAllButton.setIcon(icon5)
-        self.selectAllButton.setIconSize(QSize(30, 30))
-
-        self.verticalLayout_2.addWidget(self.selectAllButton)
-
-        self.sendButton = QPushButton(self.sendFrame)
-        self.sendButton.setObjectName(u"sendButton")
-        sizePolicy.setHeightForWidth(self.sendButton.sizePolicy().hasHeightForWidth())
-        self.sendButton.setSizePolicy(sizePolicy)
-        self.sendButton.setMinimumSize(QSize(165, 100))
-        self.sendButton.setMaximumSize(QSize(165, 100))
-        font2 = QFont()
-        font2.setPointSize(9)
-        font2.setBold(True)
-        self.sendButton.setFont(font2)
-        self.sendButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.sendButton.setStyleSheet(u"QPushButton{\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border:3px solid;\n"
-"border-radius:10px;\n"
-"	border-color:rgb(76, 175, 80);\n"
-"color: rgb(21, 48, 22);\n"
-"margin:2px;\n"
-"padding:2px\n"
-"	\n"
-"}\n"
-"QPushButton::pressed{\n"
-"	background-color: rgba(255, 255, 255, 50);\n"
-"	border-radius:10px;\n"
-"	border-color:rgb(76, 175, 80);\n"
-"	border:5px solid\n"
-"	\n"
-"}")
-        icon6 = QIcon()
-        icon6.addFile(u":/icons/picon/send.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.sendButton.setIcon(icon6)
-        self.sendButton.setIconSize(QSize(40, 40))
-
-        self.verticalLayout_2.addWidget(self.sendButton)
-
-
-        self.gridLayout.addWidget(self.sendFrame, 1, 1, 1, 1)
 
 
         self.verticalLayout.addWidget(self.frame_2)
@@ -360,6 +388,8 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText("")
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"WhatsApp Mesaj Otomasyonu", None))
+        self.selectAllButton.setText(QCoreApplication.translate("MainWindow", u"Hepsini Se\u00e7", None))
+        self.sendButton.setText(QCoreApplication.translate("MainWindow", u"G\u00f6nder", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Mesaj \u0130\u00e7erik Bilgisi i\u00e7in </p><p><span style=\" font-weight:700;\">Excel</span> dosyas\u0131 y\u00fckleyin</p><p><br/></p></body></html>", None))
         self.add_excel_button.setText(QCoreApplication.translate("MainWindow", u"Dosya Ekle", None))
         self.add_excel_button_3.setText(QCoreApplication.translate("MainWindow", u"Temizle     ", None))
@@ -384,7 +414,34 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Numara", None));
         ___qtablewidgetitem2 = self.tableWidget.horizontalHeaderItem(2)
         ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Bakiye/Mesaj \u0130\u00e7eri\u011fi", None));
-        self.selectAllButton.setText(QCoreApplication.translate("MainWindow", u"Hepsini Se\u00e7", None))
-        self.sendButton.setText(QCoreApplication.translate("MainWindow", u"G\u00f6nder", None))
+
+        __sortingEnabled = self.tableWidget.isSortingEnabled()
+        self.tableWidget.setSortingEnabled(False)
+        ___qtablewidgetitem3 = self.tableWidget.item(0, 0)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"mami", None));
+        ___qtablewidgetitem4 = self.tableWidget.item(0, 1)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"+905306565027", None));
+        ___qtablewidgetitem5 = self.tableWidget.item(0, 2)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"tutar", None));
+        ___qtablewidgetitem6 = self.tableWidget.item(1, 0)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"mami1", None));
+        ___qtablewidgetitem7 = self.tableWidget.item(1, 1)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"05308461427", None));
+        ___qtablewidgetitem8 = self.tableWidget.item(1, 2)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"t1", None));
+        ___qtablewidgetitem9 = self.tableWidget.item(2, 0)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"isim2", None));
+        ___qtablewidgetitem10 = self.tableWidget.item(2, 1)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"no2", None));
+        ___qtablewidgetitem11 = self.tableWidget.item(2, 2)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"n", None));
+        ___qtablewidgetitem12 = self.tableWidget.item(3, 0)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"isim3", None));
+        ___qtablewidgetitem13 = self.tableWidget.item(3, 1)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"no3", None));
+        ___qtablewidgetitem14 = self.tableWidget.item(3, 2)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"h", None));
+        self.tableWidget.setSortingEnabled(__sortingEnabled)
+
     # retranslateUi
 
