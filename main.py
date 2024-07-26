@@ -16,10 +16,10 @@ from PySide6.QtGui import QIcon, QPixmap
 from configparser import ConfigParser
 from whatsApp.excelwindow import ExcelMainWindow
 from MyConfigs import *
-# from chkill import *
+
 from checknet import *
 from  whatsapp_modul import *
-
+from chkill import kill_chrome
 
 
 
@@ -121,6 +121,7 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
             print(e)
 
     def add_click(self):
+
         chosen_columns = self.excel_window.ui.chosen_columns_label.text()
         config.set("excel_data", "chosen_columns", chosen_columns)
         chosen_columns = chosen_columns.split(';')
@@ -207,7 +208,7 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
             return message_total
 
     def send_message(self):
-        #import whatsapp_modul as wp
+        kill_chrome()
         items = self.tableWidget.selectedItems()
         name = ""
         number = ""
@@ -233,12 +234,12 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
 
         print(my_message_content)
 
-
+        driver = startDriver()
         for index,mesage in my_message_content.items():
-            number = mesage[0]
-            name = mesage[1]
+            number = mesage[1]
+            name = mesage[0]
             message = mesage[2]
-            send_message(number,message)
+            send_message(driver,number,message)
 
 
 class CustomDialog2(QDialog):
