@@ -1,13 +1,12 @@
-import array
 import sys
 import os
 import time
-import openpyxl
-from PySide6.QtCore import Qt
 
 this_path = os.path.dirname(os.path.abspath(__file__)) + "/whatsApp"
 sys.path.append(this_path)
 
+from PySide6.QtCore import Qt
+import openpyxl
 from whatsApp.ui_welcomeDiag import Ui_Dialog
 import whatsApp.mainwindow as MainWindow
 from PySide6 import QtWidgets
@@ -17,9 +16,28 @@ from PySide6.QtGui import QIcon, QPixmap
 from configparser import ConfigParser
 from whatsApp.excelwindow import ExcelMainWindow
 from MyConfigs import *
+# from chkill import *
+from checknet import *
+from  whatsapp_modul import *
+
+
+
+
+
+
+
+
 
 
 class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
+
+    def err_con_diag(self):
+
+        if err_connection:
+            d = CustomDialog2()
+            d.exec()
+            # time.sleep(5)
+            sys.exit()
     def openDiag(self):
         diag = QDialog()
         uw = Ui_Dialog()
@@ -42,12 +60,12 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
 
     def __init__(self):
         super().__init__()
+        self.err_con_diag()
         self.openDiag()
         self.setupUi(self)
         self.setWindowIcon(QIcon('./whatsApp/wpicon.png'))
         self.setWindowTitle('WhatsAppBot')
         self.editTable()
-
         self.add_excel_button.clicked.connect(self.add_file)
         self.add_excel_button_3.clicked.connect(self.clear_list)
         self.selectAllButton.clicked.connect(self.sel_all)
@@ -107,7 +125,7 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
         config.set("excel_data", "chosen_columns", chosen_columns)
         chosen_columns = chosen_columns.split(';')
 
-        print(chosen_columns)
+
         new_excel = config_get("excel_data", "path")
         tuple_length = 0
         if new_excel != "":
@@ -148,7 +166,6 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
                                 self.message_builder(chosen_name[i].value, data=data)))
 
             list_values = content
-            print(list_values)
             row_index = 0
             for value_tuple in list_values[0:]:
                 col_index = 0
@@ -189,8 +206,6 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
                              f"en içten dileklerimiz ile kutlar, Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk başta olmak üzere silah arkadaşlarını ve tüm şehitlerimizi rahmetle, kahraman gazilerimizi minnet ve şükranla anıyoruz;.")
             return message_total
 
-
-
     def send_message(self):
         #import whatsapp_modul as wp
         items = self.tableWidget.selectedItems()
@@ -200,7 +215,6 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
         message = ""
         content = []
         for item in items:
-
             if item.column() == 0:
                 name = item.text()
                 content.append(name)
@@ -216,50 +230,15 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
                 data = content
                 my_message_content.update({item.row(): data})
                 content = []
-        import socket
-        def checknet():
-            try:
-                socket.setdefaulttimeout(3)
-                socket.socket(socket.AF_INET,socket.SOCK_STREAM).connect(("8.8.8.8",53))
-                return True
-            except socket.error as ex:
-                print(ex)
-                d = CustomDialog2()
-                d.exec()
-                return False
-        print(message)
-        if checknet():
-            import whatsapp_modul as wp
 
-            for mesage in my_message_content.items():
-                number = mesage[0]
-                name = mesage[1]
-                message = mesage[2]
-                wp.send_message(number,message)
+        print(my_message_content)
 
 
-class OpeningDialog(QDialog):
-    def __init__(self):
-        super().__init__()
-
-        self.setWindowTitle("Hoş Geldiniz")
-        self.setWindowIcon(QIcon("whatsApp/wpicon.ico"))
-        self.layout = QVBoxLayout()
-
-        message = QLabel("Uygulamaya hoş geldiniz. Mesaj göndermek için ")
-        message.setStyleSheet("")
-        message.setStyleSheet("padding: 20px")
-        message.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        button = QPushButton()
-        button.setText("Tamam")
-
-        self.layout.addWidget(message, alignment=Qt.AlignmentFlag.AlignCenter)
-        self.layout.addWidget(button, alignment=Qt.AlignmentFlag.AlignCenter)
-        self.setLayout(self.layout)
-        button.clicked.connect(self.clk)
-
-    def clk(self):
-        self.close()
+        for index,mesage in my_message_content.items():
+            number = mesage[0]
+            name = mesage[1]
+            message = mesage[2]
+            send_message(number,message)
 
 
 class CustomDialog2(QDialog):
