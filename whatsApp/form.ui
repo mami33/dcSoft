@@ -30,6 +30,18 @@
     <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
      <widget class="QFrame" name="frame">
       <property name="sizePolicy">
@@ -51,6 +63,15 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="leftMargin">
+        <number>5</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item alignment="Qt::AlignTop">
         <widget class="QLabel" name="label">
          <property name="minimumSize">
@@ -120,6 +141,18 @@ padding:1px</string>
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QGridLayout" name="gridLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item row="1" column="1">
         <widget class="QFrame" name="sendFrame">
          <property name="sizePolicy">
@@ -664,67 +697,87 @@ padding:15px
          </column>
          <item row="0" column="0">
           <property name="text">
-           <string>mami</string>
+           <string/>
           </property>
          </item>
          <item row="0" column="1">
           <property name="text">
-           <string>+905306565027</string>
+           <string/>
           </property>
          </item>
          <item row="0" column="2">
           <property name="text">
-           <string>tutar</string>
+           <string/>
           </property>
          </item>
          <item row="1" column="0">
           <property name="text">
-           <string>mami1</string>
+           <string/>
           </property>
          </item>
          <item row="1" column="1">
           <property name="text">
-           <string>05308461427</string>
+           <string/>
           </property>
          </item>
          <item row="1" column="2">
           <property name="text">
-           <string>t1</string>
+           <string/>
           </property>
          </item>
          <item row="2" column="0">
           <property name="text">
-           <string>isim2</string>
+           <string/>
           </property>
          </item>
          <item row="2" column="1">
           <property name="text">
-           <string>no2</string>
+           <string/>
           </property>
          </item>
          <item row="2" column="2">
           <property name="text">
-           <string>n</string>
+           <string/>
           </property>
          </item>
          <item row="3" column="0">
           <property name="text">
-           <string>isim3</string>
+           <string/>
           </property>
          </item>
          <item row="3" column="1">
           <property name="text">
-           <string>no3</string>
+           <string/>
           </property>
          </item>
          <item row="3" column="2">
           <property name="text">
-           <string>h</string>
+           <string/>
           </property>
          </item>
         </widget>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_5">
+      <property name="font">
+       <font>
+        <pointsize>7</pointsize>
+        <italic>true</italic>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">margin-right:5px;
+margin-bottom:1px;</string>
+      </property>
+      <property name="text">
+       <string>&quot;Copyright © 2024 Muhammed BOZAR Tüm Hakları Saklıdır&quot;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
      </widget>
     </item>
    </layout>

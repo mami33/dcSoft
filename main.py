@@ -11,16 +11,16 @@ from whatsApp.ui_welcomeDiag import Ui_Dialog
 import whatsApp.mainwindow as MainWindow
 from PySide6 import QtWidgets
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QTableWidgetItem, QWidget, QDialog, QVBoxLayout, \
-    QLabel, QPushButton
+    QLabel, QPushButton, QTableWidgetSelectionRange
 from PySide6.QtGui import QIcon, QPixmap
 from configparser import ConfigParser
 from whatsApp.excelwindow import ExcelMainWindow
-from MyConfigs import *
+from my_configs import *
 
 from checknet import *
 from  whatsapp_modul import *
 from chkill import kill_chrome
-
+from update_whatsapp import *
 
 
 
@@ -32,9 +32,8 @@ from chkill import kill_chrome
 class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
 
     def err_con_diag(self):
-
         if err_connection:
-            d = CustomDialog2()
+            d = CustomDialog()
             d.exec()
             # time.sleep(5)
             sys.exit()
@@ -46,13 +45,14 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
         diag.setWindowIcon(QIcon('./whatsApp/wpicon.png'))
         uw.pushButton.clicked.connect(self.diagCli)
         diag.exec()
+
     def diagCli(self):
+        updateLinks()
         self.close()
 
     def showExcelWindow(self):
         self.excel_window = ExcelMainWindow()
         self.excel_window.ui.add_to_opage_btn.clicked.connect(self.add_click)
-
         self.excel_window.show()
 
     def closeEventExcel(self, event):
@@ -64,7 +64,7 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
         self.openDiag()
         self.setupUi(self)
         self.setWindowIcon(QIcon('./whatsApp/wpicon.png'))
-        self.setWindowTitle('WhatsAppBot')
+        self.setWindowTitle('WhatsAppBot                                                                                version:'+config_get("version","ver"))
         self.editTable()
         self.add_excel_button.clicked.connect(self.add_file)
         self.add_excel_button_3.clicked.connect(self.clear_list)
@@ -74,11 +74,6 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
         self.radioButton_2.clicked.connect(self.frame_clicked)
         self.radioButton_3.clicked.connect(self.frame_clicked)
         self.comboBox.currentIndexChanged.connect(self.frame_clicked)
-        # self.tableWidget.clicked.connect(self.table_clicked)
-
-    # def table_clicked(self):
-    #     row = self.tableWidget.currentRow()
-    #     self.tableWidget.selectRow(row)
 
     def sel_all(self):
         self.tableWidget.selectAll()
@@ -121,7 +116,6 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
             print(e)
 
     def add_click(self):
-
         chosen_columns = self.excel_window.ui.chosen_columns_label.text()
         config.set("excel_data", "chosen_columns", chosen_columns)
         chosen_columns = chosen_columns.split(';')
@@ -208,7 +202,7 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
             return message_total
 
     def send_message(self):
-        kill_chrome()
+
         items = self.tableWidget.selectedItems()
         name = ""
         number = ""
@@ -232,30 +226,62 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
                 my_message_content.update({item.row(): data})
                 content = []
 
-        print(my_message_content)
 
-        driver = startDriver()
-        for index,mesage in my_message_content.items():
-            number = mesage[1]
-            name = mesage[0]
-            message = mesage[2]
-            send_message(driver,number,message)
+        if len(my_message_content)>0 and my_message_content[0][0] != "":
+            kill_chrome()
+            driver = startDriver()
+            for index,mesage in my_message_content.items():
+                number = mesage[1]
+                name = mesage[0]
+                message = mesage[2]
+                send_message(driver,number,message)
+            close_driver(driver)
+        else:
+            d = PleaseChoose()
+            d.exec()
 
 
-class CustomDialog2(QDialog):
+class CustomDialog(QDialog):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("Bağlantı Hatası!")
+        self.setWindowTitle("Bağlanı Hatası")
+        self.setWindowIcon(QIcon("whatsApp/wpicon.ico"))
+        self.layout = QVBoxLayout()
+        message = QLabel("İnternet bağlantınızda sorun var lütfen konrol ediniz.")
+        message.setStyleSheet("padding: 20px")
+        message.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.layout.addWidget(message)
+        self.setLayout(self.layout)
+
+class UpdateDialog(QDialog):
+
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Güncelleme Yapılıyor")
+        self.setWindowIcon(QIcon("whatsApp/wpicon.ico"))
+        self.layout = QVBoxLayout()
+        message = QLabel("Uygulama güncelleniyor lütfen çıkmayınız")
+        message.setStyleSheet("padding: 20px")
+        message.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.layout.addWidget(message)
+        self.setLayout(self.layout)
+
+class PleaseChoose(QDialog):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("Hiçbir kişi seçmediniz")
         self.setWindowIcon(QIcon("whatsApp/wpicon.ico"))
         self.layout = QVBoxLayout()
 
-        message = QLabel("İnternet bağlantınızda sorun var lütfen konrol ediniz.")
+        message = QLabel("Lütfen listeden seçim yapınız")
         message.setStyleSheet("padding: 20px")
         message.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.layout.addWidget(message)
 
         self.setLayout(self.layout)
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

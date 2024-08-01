@@ -38,6 +38,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.frame = QFrame(self.centralwidget)
         self.frame.setObjectName(u"frame")
         sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
@@ -50,6 +51,7 @@ class Ui_MainWindow(object):
         self.frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout = QHBoxLayout(self.frame)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(5, 10, -1, 0)
         self.label = QLabel(self.frame)
         self.label.setObjectName(u"label")
         self.label.setMinimumSize(QSize(90, 90))
@@ -84,6 +86,7 @@ class Ui_MainWindow(object):
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.gridLayout = QGridLayout(self.frame_2)
         self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.sendFrame = QFrame(self.frame_2)
         self.sendFrame.setObjectName(u"sendFrame")
         sizePolicy.setHeightForWidth(self.sendFrame.sizePolicy().hasHeightForWidth())
@@ -374,6 +377,18 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.frame_2)
 
+        self.label_5 = QLabel(self.centralwidget)
+        self.label_5.setObjectName(u"label_5")
+        font3 = QFont()
+        font3.setPointSize(7)
+        font3.setItalic(True)
+        self.label_5.setFont(font3)
+        self.label_5.setStyleSheet(u"margin-right:5px;\n"
+"margin-bottom:1px;")
+        self.label_5.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.verticalLayout.addWidget(self.label_5)
+
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -417,31 +432,8 @@ class Ui_MainWindow(object):
 
         __sortingEnabled = self.tableWidget.isSortingEnabled()
         self.tableWidget.setSortingEnabled(False)
-        ___qtablewidgetitem3 = self.tableWidget.item(0, 0)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"mami", None));
-        ___qtablewidgetitem4 = self.tableWidget.item(0, 1)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"+905306565027", None));
-        ___qtablewidgetitem5 = self.tableWidget.item(0, 2)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"tutar", None));
-        ___qtablewidgetitem6 = self.tableWidget.item(1, 0)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"mami1", None));
-        ___qtablewidgetitem7 = self.tableWidget.item(1, 1)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"05308461427", None));
-        ___qtablewidgetitem8 = self.tableWidget.item(1, 2)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"t1", None));
-        ___qtablewidgetitem9 = self.tableWidget.item(2, 0)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"isim2", None));
-        ___qtablewidgetitem10 = self.tableWidget.item(2, 1)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"no2", None));
-        ___qtablewidgetitem11 = self.tableWidget.item(2, 2)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"n", None));
-        ___qtablewidgetitem12 = self.tableWidget.item(3, 0)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"isim3", None));
-        ___qtablewidgetitem13 = self.tableWidget.item(3, 1)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"no3", None));
-        ___qtablewidgetitem14 = self.tableWidget.item(3, 2)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"h", None));
         self.tableWidget.setSortingEnabled(__sortingEnabled)
 
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"\"Copyright \u00a9 2024 Muhammed BOZAR T\u00fcm Haklar\u0131 Sakl\u0131d\u0131r\"", None))
     # retranslateUi
 

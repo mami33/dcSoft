@@ -86,7 +86,6 @@ def close_driver(driver):
     driver.quit()
 
 if __name__ == "__main__":
-
     send_message("530656502sdf7","123")
 
 

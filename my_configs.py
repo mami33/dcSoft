@@ -45,6 +45,7 @@ def config_write(section, key, value):
 #config_write("excel_data", "path", "deneme1")
 
 
+
 company_name = config["comp_name"]["name"]
 company_cont = config["comp_name"]["number"]
 excel_path = config["excel_data"]["path"]

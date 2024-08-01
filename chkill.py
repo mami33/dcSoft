@@ -7,4 +7,4 @@ def kill_chrome():
         os.system("taskkill /im chrome.exe")
         os.system("taskkill /im chrome.exe")
     except Exception:
-        print(Exception)
+        pass
