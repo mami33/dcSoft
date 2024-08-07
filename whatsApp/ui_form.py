@@ -47,8 +47,8 @@ class Ui_MainWindow(object):
         sizePolicy1.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
         self.frame.setSizePolicy(sizePolicy1)
         self.frame.setMinimumSize(QSize(750, 110))
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
+        self.frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout = QHBoxLayout(self.frame)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(5, 10, -1, 0)
@@ -60,7 +60,7 @@ class Ui_MainWindow(object):
         self.label.setPixmap(QPixmap(u":/what/wpicon.png"))
         self.label.setScaledContents(True)
 
-        self.horizontalLayout.addWidget(self.label, 0, Qt.AlignTop)
+        self.horizontalLayout.addWidget(self.label, 0, Qt.AlignmentFlag.AlignTop)
 
         self.label_2 = QLabel(self.frame)
         self.label_2.setObjectName(u"label_2")
@@ -68,22 +68,49 @@ class Ui_MainWindow(object):
         font.setFamilies([u"Segoe MDL2 Assets"])
         font.setPointSize(19)
         self.label_2.setFont(font)
-        self.label_2.setLayoutDirection(Qt.LeftToRight)
+        self.label_2.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.label_2.setStyleSheet(u"color: rgb(76, 175, 80);\n"
 "padding:1px")
         self.label_2.setLineWidth(-2)
-        self.label_2.setTextFormat(Qt.MarkdownText)
-        self.label_2.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_2.setTextFormat(Qt.TextFormat.MarkdownText)
+        self.label_2.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.horizontalLayout.addWidget(self.label_2, 0, Qt.AlignLeft|Qt.AlignTop)
+        self.horizontalLayout.addWidget(self.label_2)
+
+        self.settings_btn = QPushButton(self.frame)
+        self.settings_btn.setObjectName(u"settings_btn")
+        self.settings_btn.setStyleSheet(u"QPushButton{\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	border:3px solid;\n"
+"border-radius:15px;\n"
+"	border-color:rgb(76, 175, 80);\n"
+"color: rgb(21, 48, 22);\n"
+"margin:2px;\n"
+"padding-left:15px;\n"
+"padding-right:15px;\n"
+"padding-top:5px;\n"
+"padding-bottom:5px;\n"
+"	\n"
+"}\n"
+"QPushButton::pressed{\n"
+"	background-color: rgba(255, 255, 255, 50);\n"
+"	border-radius:10px;\n"
+"	border:3px solid\n"
+"	\n"
+"}")
+        icon = QIcon()
+        icon.addFile(u":/picon/settings.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.settings_btn.setIcon(icon)
+
+        self.horizontalLayout.addWidget(self.settings_btn, 0, Qt.AlignmentFlag.AlignRight)
 
 
         self.verticalLayout.addWidget(self.frame)
 
         self.frame_2 = QFrame(self.centralwidget)
         self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setFrameShape(QFrame.StyledPanel)
-        self.frame_2.setFrameShadow(QFrame.Raised)
+        self.frame_2.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame_2.setFrameShadow(QFrame.Shadow.Raised)
         self.gridLayout = QGridLayout(self.frame_2)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -91,8 +118,8 @@ class Ui_MainWindow(object):
         self.sendFrame.setObjectName(u"sendFrame")
         sizePolicy.setHeightForWidth(self.sendFrame.sizePolicy().hasHeightForWidth())
         self.sendFrame.setSizePolicy(sizePolicy)
-        self.sendFrame.setFrameShape(QFrame.StyledPanel)
-        self.sendFrame.setFrameShadow(QFrame.Raised)
+        self.sendFrame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.sendFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.sendFrame)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.selectAllButton = QPushButton(self.sendFrame)
@@ -118,9 +145,9 @@ class Ui_MainWindow(object):
 "	border:3px solid\n"
 "	\n"
 "}")
-        icon = QIcon()
-        icon.addFile(u":/icons/picon/align-justify.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.selectAllButton.setIcon(icon)
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/picon/align-justify.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.selectAllButton.setIcon(icon1)
         self.selectAllButton.setIconSize(QSize(30, 30))
 
         self.verticalLayout_2.addWidget(self.selectAllButton)
@@ -153,9 +180,9 @@ class Ui_MainWindow(object):
 "	border:5px solid\n"
 "	\n"
 "}")
-        icon1 = QIcon()
-        icon1.addFile(u":/icons/picon/send.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.sendButton.setIcon(icon1)
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/picon/send.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.sendButton.setIcon(icon2)
         self.sendButton.setIconSize(QSize(40, 40))
 
         self.verticalLayout_2.addWidget(self.sendButton)
@@ -167,24 +194,24 @@ class Ui_MainWindow(object):
         self.settings_frame.setObjectName(u"settings_frame")
         sizePolicy1.setHeightForWidth(self.settings_frame.sizePolicy().hasHeightForWidth())
         self.settings_frame.setSizePolicy(sizePolicy1)
-        self.settings_frame.setFrameShape(QFrame.StyledPanel)
-        self.settings_frame.setFrameShadow(QFrame.Raised)
+        self.settings_frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.settings_frame.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.settings_frame)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.excel_frame = QFrame(self.settings_frame)
         self.excel_frame.setObjectName(u"excel_frame")
-        self.excel_frame.setFrameShape(QFrame.StyledPanel)
-        self.excel_frame.setFrameShadow(QFrame.Raised)
+        self.excel_frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.excel_frame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_4 = QVBoxLayout(self.excel_frame)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.label_3 = QLabel(self.excel_frame)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setStyleSheet(u"margin:10px")
-        self.label_3.setAlignment(Qt.AlignCenter)
+        self.label_3.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_3.setWordWrap(False)
         self.label_3.setMargin(-5)
 
-        self.verticalLayout_4.addWidget(self.label_3, 0, Qt.AlignHCenter)
+        self.verticalLayout_4.addWidget(self.label_3, 0, Qt.AlignmentFlag.AlignHCenter)
 
         self.add_excel_button = QPushButton(self.excel_frame)
         self.add_excel_button.setObjectName(u"add_excel_button")
@@ -212,9 +239,9 @@ class Ui_MainWindow(object):
 "	border:5px solid\n"
 "	\n"
 "}")
-        icon2 = QIcon()
-        icon2.addFile(u":/icons/picon/paperclip.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.add_excel_button.setIcon(icon2)
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/picon/paperclip.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.add_excel_button.setIcon(icon3)
         self.add_excel_button.setIconSize(QSize(30, 30))
 
         self.verticalLayout_4.addWidget(self.add_excel_button)
@@ -240,15 +267,15 @@ class Ui_MainWindow(object):
 "	border:5px solid\n"
 "	\n"
 "}")
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/picon/chevrons-left.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.add_excel_button_3.setIcon(icon3)
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/picon/chevrons-left.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.add_excel_button_3.setIcon(icon4)
         self.add_excel_button_3.setIconSize(QSize(30, 30))
 
         self.verticalLayout_4.addWidget(self.add_excel_button_3)
 
 
-        self.horizontalLayout_2.addWidget(self.excel_frame, 0, Qt.AlignLeft)
+        self.horizontalLayout_2.addWidget(self.excel_frame, 0, Qt.AlignmentFlag.AlignLeft)
 
         self.label_4 = QLabel(self.settings_frame)
         self.label_4.setObjectName(u"label_4")
@@ -257,7 +284,7 @@ class Ui_MainWindow(object):
 "padding:15px\n"
 "")
 
-        self.horizontalLayout_2.addWidget(self.label_4, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+        self.horizontalLayout_2.addWidget(self.label_4, 0, Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignVCenter)
 
         self.groupBox = QGroupBox(self.settings_frame)
         self.groupBox.setObjectName(u"groupBox")
@@ -303,7 +330,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addWidget(self.comboBox)
 
 
-        self.horizontalLayout_2.addWidget(self.groupBox, 0, Qt.AlignRight)
+        self.horizontalLayout_2.addWidget(self.groupBox, 0, Qt.AlignmentFlag.AlignRight)
 
 
         self.gridLayout.addWidget(self.settings_frame, 0, 0, 1, 2)
@@ -311,21 +338,21 @@ class Ui_MainWindow(object):
         self.tableWidget = QTableWidget(self.frame_2)
         if (self.tableWidget.columnCount() < 3):
             self.tableWidget.setColumnCount(3)
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/picon/user.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        __qtablewidgetitem = QTableWidgetItem()
-        __qtablewidgetitem.setIcon(icon4);
-        self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
         icon5 = QIcon()
-        icon5.addFile(u":/icons/picon/phone-call.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        __qtablewidgetitem1.setIcon(icon5);
-        self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        icon5.addFile(u":/icons/picon/user.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        __qtablewidgetitem = QTableWidgetItem()
+        __qtablewidgetitem.setIcon(icon5);
+        self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
         icon6 = QIcon()
-        icon6.addFile(u":/icons/picon/credit-card.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon6.addFile(u":/icons/picon/phone-call.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        __qtablewidgetitem1 = QTableWidgetItem()
+        __qtablewidgetitem1.setIcon(icon6);
+        self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/picon/credit-card.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         __qtablewidgetitem2 = QTableWidgetItem()
         __qtablewidgetitem2.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
-        __qtablewidgetitem2.setIcon(icon6);
+        __qtablewidgetitem2.setIcon(icon7);
         self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         if (self.tableWidget.rowCount() < 50):
             self.tableWidget.setRowCount(50)
@@ -356,13 +383,13 @@ class Ui_MainWindow(object):
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setEnabled(True)
         self.tableWidget.setStyleSheet(u"background-color: rgba(232, 255, 233, 50);")
-        self.tableWidget.setInputMethodHints(Qt.ImhUppercaseOnly)
-        self.tableWidget.setEditTriggers(QAbstractItemView.DoubleClicked)
+        self.tableWidget.setInputMethodHints(Qt.InputMethodHint.ImhUppercaseOnly)
+        self.tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.DoubleClicked)
         self.tableWidget.setAlternatingRowColors(True)
-        self.tableWidget.setSelectionMode(QAbstractItemView.ContiguousSelection)
-        self.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.tableWidget.setSelectionMode(QAbstractItemView.SelectionMode.ContiguousSelection)
+        self.tableWidget.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.tableWidget.setShowGrid(False)
-        self.tableWidget.setGridStyle(Qt.DashLine)
+        self.tableWidget.setGridStyle(Qt.PenStyle.DashLine)
         self.tableWidget.setSortingEnabled(False)
         self.tableWidget.setWordWrap(False)
         self.tableWidget.setCornerButtonEnabled(False)
@@ -385,7 +412,7 @@ class Ui_MainWindow(object):
         self.label_5.setFont(font3)
         self.label_5.setStyleSheet(u"margin-right:5px;\n"
 "margin-bottom:1px;")
-        self.label_5.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_5.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.verticalLayout.addWidget(self.label_5)
 
@@ -403,6 +430,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText("")
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"WhatsApp Mesaj Otomasyonu", None))
+        self.settings_btn.setText(QCoreApplication.translate("MainWindow", u"Ayarlar", None))
         self.selectAllButton.setText(QCoreApplication.translate("MainWindow", u"Hepsini Se\u00e7", None))
         self.sendButton.setText(QCoreApplication.translate("MainWindow", u"G\u00f6nder", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Mesaj \u0130\u00e7erik Bilgisi i\u00e7in </p><p><span style=\" font-weight:700;\">Excel</span> dosyas\u0131 y\u00fckleyin</p><p><br/></p></body></html>", None))

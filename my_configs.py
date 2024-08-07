@@ -42,11 +42,9 @@ def config_write(section, key, value):
         config.write(configfile)
 
 
-#config_write("excel_data", "path", "deneme1")
-
-
 
 company_name = config["comp_name"]["name"]
+
 company_cont = config["comp_name"]["number"]
 excel_path = config["excel_data"]["path"]
 chosen_columns = config["excel_data"]["chosen_columns"]

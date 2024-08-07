@@ -4,6 +4,7 @@
         "form.ui",
         "res.qrc",
         "excel.ui",
-        "welcomeDiag.ui"
+        "welcomeDiag.ui",
+        "settings.ui"
     ]
 }

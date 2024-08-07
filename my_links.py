@@ -1,19 +1,3 @@
-"""
-import mysql.connector
-
-connection = mysql.connector.connect(
-    host="localhost",
-    user="mami",
-    passwd="1234abc",
-    database="mami",
-    port="5002")
-
-cursor = connection.cursor()
-cursor.execute("show tables")
-print(cursor.fetchall())
-VERSION = "1.0.0"
-VER_CH = ""
-"""
 from configparser import ConfigParser
 
 import mysql

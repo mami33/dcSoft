@@ -2,13 +2,13 @@ from urllib.request import urlopen
 from my_configs import *
 
 import json
-url = "http://77.79.80.209:5000/Tarsus"
+url = "http://77.79.80.209:5000/MyWeb/linkserver/mylinks.php"
 
 
 def updateLinks():
 
     try:
-        response = urlopen(url,timeout=4)
+        response = urlopen(url,timeout=3)
         data_json = json.loads(response.read())
         res = data_json["whatsAppLinks"]
         ver = data_json["version"]
@@ -16,12 +16,12 @@ def updateLinks():
             for index in res:
                  config_write("whatsAppLinks",index,res[index])
             config_write("version","ver",ver)
-            return "UPDATED"
+            return "En güncel sürüme yükseltildi"
         else:
-            return "NO UPDATE"
+            return "Zaten en güncel sürümü kullanıyorsunuz"
 
 
     except Exception as e:
-        return "ERROR UPDATE: " + str(e)
+        return "Güncelleme hatası: " + str(e)
 
 

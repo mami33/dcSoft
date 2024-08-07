@@ -60,7 +60,7 @@ def user_not_found(driver):
 
 def send_message(driver,number, message):
 
-    wait = WebDriverWait(driver, 5)
+    wait = WebDriverWait(driver, 15)
     actions = ActionChains(driver)
     actions.send_keys(Keys.ESCAPE)
     actions.perform()
@@ -86,6 +86,12 @@ def close_driver(driver):
     driver.quit()
 
 if __name__ == "__main__":
-    send_message("530656502sdf7","123")
+    driver = startDriver()
+
+    send_message(driver,"5306565027", "123")
+    send_message(driver,"+905388666684", "123")
+    send_message(driver,"5308461427", "123")
+    send_message(driver, "530656502sdf7", "123")
+
 
 

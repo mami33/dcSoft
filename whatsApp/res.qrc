@@ -11,4 +11,7 @@
     <qresource prefix="/what">
         <file>wpicon.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>picon/settings.svg</file>
+    </qresource>
 </RCC>

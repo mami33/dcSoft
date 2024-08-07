@@ -21,7 +21,7 @@ from checknet import *
 from  whatsapp_modul import *
 from chkill import kill_chrome
 from update_whatsapp import *
-
+from whatsApp.settingswindow import SettingsWindow
 
 
 
@@ -30,7 +30,9 @@ from update_whatsapp import *
 
 
 class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
-
+    def showUpdateDiag(self):
+        dialog = UpdateDialog(updateLinks())
+        dialog.exec()
     def err_con_diag(self):
         if err_connection:
             d = CustomDialog()
@@ -43,12 +45,10 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
         uw.setupUi(diag)
         diag.setWindowTitle("Hoş Geldiniz")
         diag.setWindowIcon(QIcon('./whatsApp/wpicon.png'))
-        uw.pushButton.clicked.connect(self.diagCli)
+
         diag.exec()
 
-    def diagCli(self):
-        updateLinks()
-        self.close()
+
 
     def showExcelWindow(self):
         self.excel_window = ExcelMainWindow()
@@ -60,8 +60,15 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
 
     def __init__(self):
         super().__init__()
+
+        if config_get("version","firstLog") == "" or config_get("version","firstLog") == "-" or config_get("version","firstLog") == None:
+            import connectSql as c
+            d = FirstSignUp(c.newUser()+"   "+ c.gmaa)
+            config_write("version","firstLog",c.gmaa)
+            d.exec()
         self.err_con_diag()
         self.openDiag()
+        self.showUpdateDiag()
         self.setupUi(self)
         self.setWindowIcon(QIcon('./whatsApp/wpicon.png'))
         self.setWindowTitle('WhatsAppBot                                                                                version:'+config_get("version","ver"))
@@ -71,10 +78,14 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
         self.selectAllButton.clicked.connect(self.sel_all)
         self.sendButton.clicked.connect(self.send_message)
         self.checkBox.clicked.connect(self.frame_clicked)
+        self.settings_btn.clicked.connect(self.open_set)
         self.radioButton_2.clicked.connect(self.frame_clicked)
         self.radioButton_3.clicked.connect(self.frame_clicked)
         self.comboBox.currentIndexChanged.connect(self.frame_clicked)
 
+    def open_set(self):
+        self.w = SettingsWindow()
+        self.w.show()
     def sel_all(self):
         self.tableWidget.selectAll()
 
@@ -244,7 +255,6 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
 class CustomDialog(QDialog):
     def __init__(self):
         super().__init__()
-
         self.setWindowTitle("Bağlanı Hatası")
         self.setWindowIcon(QIcon("whatsApp/wpicon.ico"))
         self.layout = QVBoxLayout()
@@ -254,14 +264,31 @@ class CustomDialog(QDialog):
         self.layout.addWidget(message)
         self.setLayout(self.layout)
 
-class UpdateDialog(QDialog):
 
-    def __init__(self):
+class FirstSignUp(QDialog):
+
+    def __init__(self,message):
         super().__init__()
-        self.setWindowTitle("Güncelleme Yapılıyor")
+        self.setWindowTitle("İlk kayıt işlemi")
         self.setWindowIcon(QIcon("whatsApp/wpicon.ico"))
         self.layout = QVBoxLayout()
-        message = QLabel("Uygulama güncelleniyor lütfen çıkmayınız")
+        message = QLabel("Programın ilk kayıt işlemi gerçekleştirildi:  " + message)
+        message.setStyleSheet("padding: 20px")
+        message.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.layout.addWidget(message)
+        self.setLayout(self.layout)
+
+
+
+
+class UpdateDialog(QDialog):
+
+    def __init__(self,mesaj):
+        super().__init__()
+        self.setWindowTitle("Güncelleme Durumu")
+        self.setWindowIcon(QIcon("whatsApp/wpicon.ico"))
+        self.layout = QVBoxLayout()
+        message = QLabel(mesaj)
         message.setStyleSheet("padding: 20px")
         message.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.layout.addWidget(message)
