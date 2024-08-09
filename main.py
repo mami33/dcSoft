@@ -96,10 +96,11 @@ class MainWindow(QMainWindow, MainWindow.Ui_MainWindow):
         self.tableWidget.setColumnWidth(2, 550)
 
     def add_file(self):
+        des = os.path.expanduser("~/Desktop")
         files, _ = QFileDialog.getOpenFileNames(
             self,
             caption='Eklenecek Excel Dosyasını Seçiniz',
-            dir=':\\',
+            dir=des,
             filter='Supported Files (*.xlsm;*.xlsx;*.xls)'
         )
         if files:
